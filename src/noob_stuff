@@ -1,0 +1,32 @@
+//attemp1 - naive
+pub fn draw_line(&mut self, x1: i32, y1: i32, x2: i32, y2: i32, color: u32){
+	let m = (y2-y1) as f32/(x2-x1) as f32;
+	if (x1-x2).abs()>=(y1-y2).abs(){
+		if x1<=x2{
+			for x in x1..=x2{
+				let y = m*(x-x1) as f32 + y1 as f32;
+				self.put_pixel(x as usize, y as usize, color);
+			}
+		}
+		else{
+			for x in x2..=x1{
+				let y = m*(x-x2) as f32 + y2 as f32;
+				self.put_pixel(x as usize, y as usize, color);
+			}
+		}
+	}
+	else{
+		if y1<=y2{
+			for y in y1..y2{
+				let x = (y-y1) as f32/m + x1 as f32;
+				self.put_pixel(x as usize, y as usize, color);
+			}
+		}
+		else{
+			for y in y2..y1{
+				let x = (y-y2) as f32/m + x2 as f32;
+				self.put_pixel(x as usize, y as usize, color);
+			}
+		}
+	}
+}
