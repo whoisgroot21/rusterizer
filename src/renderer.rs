@@ -141,13 +141,18 @@ impl Renderer {
         self.draw_line_2d(p1, p3, color);
     }
 
+
+    
+    
+    //barycentric coords approach
+    //better for gpu based/parallel processing renderers
+
     #[inline(always)]
     fn sign_of_weight(x1: i32, y1: i32, x2: i32, y2: i32, x3: i32, y3: i32)-> i32{
         //return (x3 - x1) * (y2 - y1) - (y3 - y1) * (x2 - x1);
         return (y2-y1)*(x2+x1) + (y3-y2)*(x3+x2) + (y1-y3)*(x1+x3);
     }
 
-    //barycentric coords
     pub fn draw_triangle_2d(&mut self, p1: Vec2i, p2: Vec2i, p3: Vec2i, color: u32) {
         //for testing
         //self.draw_triangle_wireframe_2d(p1, p2, p3, color);
@@ -169,9 +174,11 @@ impl Renderer {
             }
         }
     }
+    //*/
 
-
-    //scanline
+    //better for single threaded, cpu-only renderers
+    //like ours
+    //scanline approach
     pub fn scan_draw_triangle_2d(&mut self, mut p1: Vec2i, mut p2: Vec2i, mut p3: Vec2i, color: u32) {
         if p1.y>p2.y{
             let tp = p1;

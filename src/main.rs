@@ -36,11 +36,11 @@ fn main() {
         renderer.scan_draw_triangle_2d(test[i][0], test[i][1], test[i][2], 0xFFFFFF);
     }
 
-    
+    renderer.clear();
     let t1 = time::Instant::now();
 
     for i in 0..250{
-        renderer.draw_triangle_2d(test[i][0], test[i][1], test[i][2], 0xFFFFFF);
+        renderer.draw_triangle_2d(test[i][0], test[i][1], test[i][2], rand::random_range(0..0xFFFFFF));
     }
 
     let t2 = time::Instant::now();
@@ -66,12 +66,7 @@ fn main() {
             delta_time -= UPDATE_RATE as u128;
         }
 
-        renderer.clear();
-        //renderer.scan_draw_triangle_2d(Vec2i { x: 50, y: 50 }, Vec2i { x: 100, y: 50 }, Vec2i { x: 100, y: 100 }, 0xFFFFFF);
-        //renderer.draw_triangle_2d(Vec2i { x: 54, y: 213 }, Vec2i { x: 168, y: 27 }, Vec2i { x: 100, y: 50 }, 0xFFFFFF);
-        //renderer.draw_triangle_2d(Vec2i { x: 50, y: 50 }, Vec2i { x: 50, y: 100 }, Vec2i { x: 100, y: 100 }, 0xFFFFFF);
-        //renderer.draw_triangle_2d(Vec2i { x: 50, y: 50 }, Vec2i { x: 100, y: 50 }, Vec2i { x: 100, y: 100 }, 0xFFFFFF);
-        //renderer.draw_triangle_2d(Vec2i { x: 50, y: 50 }, Vec2i { x: 50, y: 100 }, Vec2i { x: 100, y: 100 }, 0xFFFFFF);
+        //renderer.clear();
         window
             .update_with_buffer(renderer.get_render_data(), WIDTH, HEIGHT)
             .unwrap();
