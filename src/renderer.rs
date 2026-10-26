@@ -142,7 +142,7 @@ impl Renderer {
     }
 
 
-    
+    /*
     
     //barycentric coords approach
     //better for gpu based/parallel processing renderers
@@ -174,12 +174,12 @@ impl Renderer {
             }
         }
     }
-    //*/
+    */
 
     //better for single threaded, cpu-only renderers
     //like ours
     //scanline approach
-    pub fn scan_draw_triangle_2d(&mut self, mut p1: Vec2i, mut p2: Vec2i, mut p3: Vec2i, color: u32) {
+    pub fn draw_triangle_2d(&mut self, mut p1: Vec2i, mut p2: Vec2i, mut p3: Vec2i, color: u32) {
         if p1.y>p2.y{
             let tp = p1;
             p1 = p2;
